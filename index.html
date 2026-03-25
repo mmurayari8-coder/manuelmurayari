@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MANUEL MURAYARI | Visores 360°</title>
+  <style>
+    :root {
+      --bg: #0f172a;
+      --bg-soft: #111827;
+      --card: rgba(255, 255, 255, 0.08);
+      --gold: #d4af37;
+      --gold-soft: #f3df9b;
+      --text: #f8fafc;
+      --muted: #cbd5e1;
+      --line: rgba(255, 255, 255, 0.12);
+      --accent: #8fb8ff;
+      --shadow: 0 20px 45px rgba(0, 0, 0, 0.35);
+      --radius: 24px;
+      --max: 1180px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(212, 175, 55, 0.12), transparent 28%),
+        radial-gradient(circle at bottom right, rgba(143, 184, 255, 0.12), transparent 25%),
+        linear-gradient(145deg, #08111f 0%, #0f172a 45%, #111827 100%);
+      color: var(--text);
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .container {
+      width: min(100% - 40px, var(--max));
+      margin: 0 auto;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      backdrop-filter: blur(16px);
+      background: rgba(8, 17, 31, 0.72);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 0;
+      gap: 20px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      min-width: 0;
+    }
+
+    .brand img {
+      width: 58px;
+      height: 58px;
+      border-radius: 18px;
+      object-fit: cover;
+      background: #fff;
+      padding: 4px;
+      box-shadow: var(--shadow);
+    }
+
+    .brand-text h1 {
+      margin: 0;
+      font-size: 1.05rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .brand-text p {
+      margin: 4px 0 0;
+      color: var(--gold-soft);
+      font-size: 0.9rem;
+      text-align: center;
+      width: 100%;
+      display: block;
+    }
+
+    .menu {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .menu a {
+      padding: 12px 18px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      color: var(--muted);
+      transition: 0.25s ease;
+    }
+
+    .menu a:hover,
+    .menu a.active {
+      color: var(--text);
+      border-color: rgba(212, 175, 55, 0.45);
+      background: rgba(212, 175, 55, 0.08);
+      box-shadow: 0 10px 30px rgba(212, 175, 55, 0.08);
+    }
+
+    section {
+      padding: 0px 0;
+    }
+
+    .hero {
+      min-height: 92vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding-top: 10px;
+    }
+
+    .hero-grid {
+      transform: translateY(-80px);
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 24px;
+      align-items: center;
+      justify-items: center;
+      text-align: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 16px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid var(--line);
+      color: var(--gold-soft);
+      margin-top: -60px;
+      margin-bottom: 14px;
+      font-size: 0.9rem;
+    }
+
+    .hero h2 {
+      text-align: center;
+      font-size: clamp(2.5rem, 5vw, 5rem);
+      line-height: 1.02;
+      margin: 0 0 18px;
+    }
+
+    .hero h2 span {
+      color: var(--gold);
+    }
+
+    .hero p {
+      color: var(--muted);
+      font-size: 1.08rem;
+      line-height: 1.8;
+      margin: 0 auto 30px;
+      max-width: 950px;
+      text-align: center;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .btn {
+      padding: 15px 22px;
+      border-radius: 14px;
+      font-weight: bold;
+      border: 1px solid transparent;
+      transition: 0.25s ease;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #d4af37 0%, #f1d57a 100%);
+      color: #111827;
+      box-shadow: 0 12px 30px rgba(212, 175, 55, 0.25);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+    }
+
+    .btn-secondary {
+      border-color: var(--line);
+      color: var(--text);
+      background: rgba(255, 255, 255, 0.04);
+    }
+
+    .btn-secondary:hover {
+      border-color: rgba(255, 255, 255, 0.28);
+      transform: translateY(-2px);
+    }
+
+    .info-card,
+    .catalog-card,
+    .contact-card {
+      border: 1px solid var(--line);
+      background: var(--card);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    .section-title {
+      margin-bottom: 16px;
+      text-align: center;
+    }
+
+    .section-title h3 {
+      margin: 0 0 12px;
+      font-size: clamp(2rem, 3vw, 3rem);
+    }
+
+    #catalogo .section-title h3 {
+      margin-top: -130px;
+    }
+
+    .section-title p {
+      margin: 0 auto;
+      max-width: 760px;
+      color: var(--muted);
+      line-height: 1.8;
+    }
+
+    .catalog-grid {
+      margin-top: 40px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .catalog-card {
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .viewer {
+      aspect-ratio: 16 / 10;
+      width: 100%;
+      border: 0;
+      background:
+        linear-gradient(135deg, rgba(212, 175, 55, 0.12), rgba(143, 184, 255, 0.08)),
+        #0b1324;
+    }
+
+    .catalog-content {
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .catalog-content h4 {
+      margin: 0;
+      font-size: 1.15rem;
+    }
+
+    .catalog-content p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.65;
+      font-size: 0.95rem;
+    }
+
+    .link-box {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 12px 14px;
+      color: var(--gold-soft);
+      font-size: 0.88rem;
+      word-break: break-word;
+    }
+
+    .contact-card {
+      padding: 30px;
+      margin-top: 40px;
+      text-align: center;
+    }
+
+    .contact-card p {
+      color: var(--muted);
+      line-height: 1.7;
+      max-width: 700px;
+      margin: 0 auto 22px;
+    }
+
+    footer {
+      padding: 28px 0 40px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      text-align: center;
+    }
+
+    .tag {
+      display: inline-block;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(143, 184, 255, 0.08);
+      border: 1px solid rgba(143, 184, 255, 0.18);
+      color: #dbeafe;
+      font-size: 0.84rem;
+      margin-right: 8px;
+      margin-bottom: 8px;
+    }
+
+    @media (max-width: 980px) {
+      .hero-grid,
+      .catalog-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+@media (max-width: 640px) {
+  .nav {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .brand {
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .brand-text h1 {
+    font-size: 0.9rem;
+    line-height: 1.4;
+    text-align: center;
+  }
+
+  .brand-text p {
+    text-align: center;
+  }
+
+  .menu {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .menu a {
+    padding: 10px 14px;
+    font-size: 0.95rem;
+  }
+
+  .hero {
+    min-height: auto;
+    padding-top: 40px;
+    padding-bottom: 40px;
+  }
+
+  .hero-grid {
+    gap: 18px;
+    justify-items: center;
+    text-align: center;
+  }
+
+  .eyebrow {
+    margin-top: 0;
+    margin-bottom: 12px;
+    font-size: 0.8rem;
+    text-align: center;
+  }
+
+  .hero h2 {
+    font-size: 2rem;
+    line-height: 1.2;
+    text-align: center;
+  }
+
+  .hero p {
+    font-size: 1rem;
+    line-height: 1.7;
+    max-width: 100%;
+    text-align: center;
+    padding: 0 8px;
+  }
+
+  .hero-actions {
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
+
+  .btn {
+    width: 100%;
+    max-width: 280px;
+  }
+
+  section {
+    padding: 60px 0;
+  }
+
+  #catalogo .section-title h3 {
+    margin-top: -20px;
+    font-size: 1.8rem;
+    text-align: center;
+  }
+
+  .section-title p {
+    max-width: 100%;
+    padding: 0 10px;
+    text-align: center;
+  }
+
+  .catalog-grid {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+  .catalog-content {
+    text-align: center;
+  }
+
+  .contact-card {
+    padding: 22px;
+  }
+
+  .contact-card h4,
+  .contact-card p {
+    text-align: center;
+  }
+}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <a class="brand" href="#inicio">
+        <img src="logomanuel.png" alt="Logotipo de la marca" />
+        <div class="brand-text">
+          <h1>MANUEL MURAYARI VISORES 360°</h1>
+          <p>- SERVICIO AÉREO CON DRON -</p>
+        </div>
+      </a>
+
+      <nav class="menu">
+        <a href="#inicio" class="active">Inicio</a>
+        <a href="#catalogo">Catálogo</a>
+        <a href="#contacto">Contacto</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="inicio">
+      <div class="container hero-grid">
+        <div>
+          <div class="eyebrow">Presentación profesional para agencias y desarrolladoras</div>
+
+          <h2>Haz que tus clientes visualicen su futuro en cada terreno con experiencias 360°.</h2>
+
+          <p>
+            No se trata solo de mostrar un lote, sino de hacer que el cliente visualice su futuro desde el primer contacto.
+Con recorridos virtuales 360°, tus terrenos se convierten en oportunidades reales: el espacio donde construirán su casa, su negocio o su inversión.
+          </p>
+
+          <div style="margin-bottom: 18px;">
+            <span class="tag">Más visitas</span>
+            <span class="tag">Mayor impacto</span>
+            <span class="tag">Ventas más rápidas</span>
+          </div>
+
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#catalogo">Ver catálogo</a>
+            <a class="btn btn-secondary" href="#contacto">Solicitar demostración</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="catalogo">
+      <div class="container">
+        <div class="section-title">
+          <h3>Catálogo de visores 360°</h3>
+          <p>Explora algunos ejemplos de recorridos virtuales para propiedades y proyectos inmobiliarios.</p>
+        </div>
+
+<div class="catalog-grid">
+
+  <!-- TOUR 1 -->
+  <article class="catalog-card">
+    <iframe class="viewer" src="https://tour.panoee.net/69c3161266cf878ba00e2f6c"></iframe>
+    <div class="catalog-content">
+      <h4>1. PROY. VALLES DEL PARANAPURA</h4>
+      <p>Explora los Valles del Paranapura a través de una experiencia Tour 360° inmersiva, donde podrás recorrer su entorno como si estuvieras ahí. Descubre la esencia del territorio desde cualquier lugar, conectando con su riqueza en tiempo real.</p>
+      <button class="btn" onclick="abrirFullscreen(this)" data-link="https://tour.panoee.net/69c3161266cf878ba00e2f6c">Ver en grande</button>
+    </div>
+  </article>
+
+  <!-- TOUR 2 -->
+  <article class="catalog-card">
+    <iframe class="viewer" src="https://TU-LINK-EMBED-2"></iframe>
+    <div class="catalog-content">
+      <h4>2. Comedor</h4>
+      <p>Espacio cómodo y moderno.</p>
+      <button class="btn" onclick="abrirFullscreen(this)" data-link="https://TU-LINK-EMBED-2">Ver en grande</button>
+    </div>
+  </article>
+
+  <!-- TOUR 3 -->
+  <article class="catalog-card">
+    <iframe class="viewer" src="https://TU-LINK-EMBED-3"></iframe>
+    <div class="catalog-content">
+      <h4>3. Cocina</h4>
+      <p>Diseño funcional y elegante.</p>
+      <button class="btn" onclick="abrirFullscreen(this)" data-link="https://TU-LINK-EMBED-3">Ver en grande</button>
+    </div>
+  </article>
+
+  <!-- TOUR 4 -->
+  <article class="catalog-card">
+    <iframe class="viewer" src="https://TU-LINK-EMBED-4"></iframe>
+    <div class="catalog-content">
+      <h4>4. Dormitorio</h4>
+      <p>Ambiente acogedor y luminoso.</p>
+      <button class="btn" onclick="abrirFullscreen(this)" data-link="https://TU-LINK-EMBED-4">Ver en grande</button>
+    </div>
+  </article>
+
+  <!-- TOUR 5 -->
+  <article class="catalog-card">
+    <iframe class="viewer" src="https://TU-LINK-EMBED-5"></iframe>
+    <div class="catalog-content">
+      <h4>5. Baño</h4>
+      <p>Acabados modernos.</p>
+      <button class="btn" onclick="abrirFullscreen(this)" data-link="https://TU-LINK-EMBED-5">Ver en grande</button>
+    </div>
+  </article>
+
+  <!-- TOUR 6 -->
+  <article class="catalog-card">
+    <iframe class="viewer" src="https://TU-LINK-EMBED-6"></iframe>
+    <div class="catalog-content">
+      <h4>6. Terraza</h4>
+      <p>Vista amplia y relajante.</p>
+      <button class="btn" onclick="abrirFullscreen(this)" data-link="https://TU-LINK-EMBED-6">Ver en grande</button>
+    </div>
+  </article>
+
+</div>
+
+<!-- FULLSCREEN -->
+<div id="fullscreenTour" class="fullscreen">
+  <button class="close-btn" onclick="cerrarFullscreen()">✕</button>
+  <iframe id="frameGrande"></iframe>
+</div>
+
+<style>
+.catalog-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.catalog-card {
+  border: 1px solid #ddd;
+  border-radius: 14px;
+  overflow: hidden;
+  background: #fff;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+.viewer {
+  width: 100%;
+  height: 260px;
+  border: none;
+  display: block;
+}
+
+.catalog-content {
+  padding: 16px;
+  color: #111;
+}
+
+.catalog-content h4 {
+  color: #111;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.catalog-content p {
+  color: #555;
+  font-size: 14px;
+}
+
+.btn {
+  margin-top: 10px;
+  padding: 10px 16px;
+  border-radius: 8px;
+  background: #111;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+/* FULLSCREEN */
+.fullscreen {
+  position: fixed;
+  inset: 0;
+  background: #000;
+  display: none;
+  z-index: 9999;
+}
+
+.fullscreen iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+.close-btn {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  background: #fff;
+  border: none;
+  font-size: 18px;
+  padding: 8px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  z-index: 10000;
+}
+
+/* TABLET */
+@media (max-width: 992px) {
+  .catalog-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* MOBILE */
+@media (max-width: 576px) {
+  .catalog-grid {
+    grid-template-columns: 1fr;
+  }
+}
+#contacto {
+  padding-top: 140px;
+}
+</style>
+
+<script>
+function abrirFullscreen(btn) {
+  const link = btn.getAttribute("data-link");
+
+  document.getElementById("fullscreenTour").style.display = "block";
+  document.getElementById("frameGrande").src = link;
+}
+
+function cerrarFullscreen() {
+  document.getElementById("fullscreenTour").style.display = "none";
+  document.getElementById("frameGrande").src = "";
+}
+</script>
+
+    <section id="contacto">
+      <div class="container">
+        <div class="section-title">
+          <h3>Contáctame</h3>
+          <p>
+            Conecta conmigo directamente a través de mis redes sociales o escríbeme por WhatsApp
+            para más información sobre recorridos virtuales 360°.
+          </p>
+        </div>
+
+        <div class="contact-card">
+          <h4 style="margin-top: 0; font-size: 1.5rem;">
+            Disponible para proyectos inmobiliarios
+          </h4>
+
+          <p>
+            Trabajo con inmobiliarias, agentes y desarrolladores que buscan diferenciar sus propiedades
+            con tecnología 360° y contenido visual de alto impacto.
+          </p>
+
+          <div style="display:flex; justify-content:center; gap:25px; flex-wrap:wrap; margin-top:20px;">
+            <a href="https://instagram.com/TU_USUARIO" target="_blank" style="text-align:center;">
+              <div style="font-size:30px;">📸</div>
+              <div>Instagram</div>
+            </a>
+
+            <a href="https://www.facebook.com/share/1Atyb8zh9k/?mibextid=wwXIfr" target="_blank" style="text-align:center;">
+              <div style="font-size:30px;">📘</div>
+              <div>Facebook</div>
+            </a>
+
+            <a href="https://wa.me/51916191970" target="_blank" style="text-align:center;">
+              <div style="font-size:30px;">💬</div>
+              <div>WhatsApp</div>
+            </a>
+
+            <a href="https://tiktok.com/@murayarimanuel" target="_blank" style="text-align:center;">
+              <div style="font-size:30px;">🎵</div>
+              <div>TikTok</div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      © 2026 · Presentación de servicios inmobiliarios con visores 360°.
+    </div>
+  </footer>
+</body>
+</html>
