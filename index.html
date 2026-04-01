@@ -3,60 +3,68 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>MANUEL MURAYARI | Visores 360°</title>
+  <title>Manuel Murayari | Visores 360° para proyectos inmobiliarios</title>
+  <meta name="description" content="Recorridos virtuales 360° para inmobiliarias, agentes y desarrolladoras. Presenta terrenos y propiedades con una experiencia inmersiva, profesional y de alto impacto." />
+  <meta name="theme-color" content="#0f172a" />
+  <meta property="og:title" content="Manuel Murayari | Visores 360°" />
+  <meta property="og:description" content="Experiencias 360° para vender más rápido y con mejor presentación visual." />
+  <meta property="og:type" content="website" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
 
   <style>
     :root {
-      --bg: #0f172a;
-      --bg-soft: #111827;
-      --card: rgba(255, 255, 255, 0.08);
+      --bg: #08111f;
+      --bg-soft: #0f172a;
+      --card: rgba(255,255,255,0.08);
+      --card-strong: rgba(255,255,255,0.14);
       --gold: #d4af37;
       --gold-soft: #f3df9b;
       --text: #f8fafc;
       --muted: #cbd5e1;
-      --line: rgba(255, 255, 255, 0.12);
-      --accent: #8fb8ff;
-      --shadow: 0 20px 45px rgba(0, 0, 0, 0.35);
+      --line: rgba(255,255,255,0.12);
+      --white: #ffffff;
+      --dark: #111827;
+      --success: #22c55e;
+      --shadow: 0 20px 45px rgba(0,0,0,0.35);
       --radius: 24px;
+      --radius-sm: 16px;
       --max: 1180px;
     }
 
-    * {
-      box-sizing: border-box;
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      font-family: 'Inter', Arial, Helvetica, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top, rgba(212,175,55,0.12), transparent 32%),
+        linear-gradient(rgba(0,0,0,0.62), rgba(0,0,0,0.82)),
+        url('fondo.jpg') center/cover fixed no-repeat;
     }
 
-    html {
-      scroll-behavior: smooth;
-    }
-
-body {
-  margin: 0;
-  font-family: Arial, Helvetica, sans-serif;
-  background: 
-    linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.7)),
-    url("fondo.JPG");
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed;
-  color: var(--text);
-}
-
-    a {
-      text-decoration: none;
-      color: inherit;
-    }
+    img { max-width: 100%; display: block; }
+    a { color: inherit; text-decoration: none; }
+    button { font: inherit; }
 
     .container {
       width: min(100% - 40px, var(--max));
       margin: 0 auto;
     }
 
+    .glass {
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+    }
+
     header {
       position: sticky;
       top: 0;
       z-index: 1000;
-      backdrop-filter: blur(16px);
-      background: rgba(8, 17, 31, 0.72);
+      background: rgba(8,17,31,0.72);
       border-bottom: 1px solid var(--line);
     }
 
@@ -64,8 +72,8 @@ body {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 16px 0;
       gap: 20px;
+      padding: 16px 0;
     }
 
     .brand {
@@ -78,8 +86,8 @@ body {
     .brand img {
       width: 58px;
       height: 58px;
-      border-radius: 18px;
       object-fit: cover;
+      border-radius: 18px;
       background: #fff;
       padding: 4px;
       box-shadow: var(--shadow);
@@ -88,7 +96,7 @@ body {
 
     .brand-text h1 {
       margin: 0;
-      font-size: 1.05rem;
+      font-size: 1rem;
       letter-spacing: 0.08em;
       text-transform: uppercase;
     }
@@ -96,14 +104,13 @@ body {
     .brand-text p {
       margin: 4px 0 0;
       color: var(--gold-soft);
-      font-size: 0.9rem;
-      text-align: center;
-      width: 100%;
-      display: block;
+      font-size: 0.88rem;
+      letter-spacing: 0.08em;
     }
 
     .menu {
       display: flex;
+      align-items: center;
       gap: 12px;
       flex-wrap: wrap;
     }
@@ -119,82 +126,72 @@ body {
     .menu a:hover,
     .menu a.active {
       color: var(--text);
-      border-color: rgba(212, 175, 55, 0.45);
-      background: rgba(212, 175, 55, 0.08);
-      box-shadow: 0 10px 30px rgba(212, 175, 55, 0.08);
+      border-color: rgba(212,175,55,0.45);
+      background: rgba(212,175,55,0.08);
+      box-shadow: 0 10px 30px rgba(212,175,55,0.08);
     }
 
-    section {
-      padding: 80px 0;
-    }
+    section { padding: 84px 0; }
 
     .hero {
       min-height: 92vh;
       display: flex;
       align-items: center;
-      justify-content: center;
-      padding-top: 20px;
-      padding-bottom: 20px;
+      position: relative;
+      padding: 48px 0;
     }
 
     .hero-grid {
       display: grid;
       grid-template-columns: 1fr;
-      gap: 24px;
+      gap: 28px;
       align-items: center;
       justify-items: center;
       text-align: center;
-      transform: translateY(-40px);
     }
 
     .eyebrow {
       display: inline-flex;
       align-items: center;
-      justify-content: center;
       gap: 10px;
       padding: 10px 16px;
       border-radius: 999px;
-      background: rgba(255, 255, 255, 0.06);
+      background: rgba(255,255,255,0.06);
       border: 1px solid var(--line);
       color: var(--gold-soft);
-      margin-top: 0;
-      margin-bottom: 14px;
       font-size: 0.9rem;
-      max-width: 100%;
-      text-align: center;
+      margin-bottom: 18px;
     }
 
     .hero h2 {
-      text-align: center;
-      font-size: clamp(2.4rem, 5vw, 5rem);
-      line-height: 1.05;
+      font-size: clamp(2.5rem, 5vw, 5rem);
+      line-height: 1.04;
       margin: 0 0 18px;
+      max-width: 900px;
     }
 
-    .hero h2 span {
-      color: var(--gold);
-    }
+    .hero h2 span { color: var(--gold); }
 
     .hero p {
       color: var(--muted);
-      font-size: 1.08rem;
-      line-height: 1.8;
-      margin: 0 auto 30px;
-      max-width: 950px;
-      text-align: center;
+      font-size: 1.05rem;
+      line-height: 1.85;
+      margin: 0 auto 28px;
+      max-width: 760px;
     }
 
     .hero-actions {
       display: flex;
       gap: 14px;
       flex-wrap: wrap;
+      margin-bottom: 24px;
       justify-content: center;
     }
 
     .btn {
       padding: 15px 22px;
       border-radius: 14px;
-      font-weight: bold;
+      font-weight: 700;
       border: 1px solid transparent;
       transition: 0.25s ease;
       display: inline-flex;
@@ -204,38 +201,95 @@ body {
       font-size: 0.95rem;
     }
 
-    .btn-primary {
-      background: linear-gradient(135deg, #d4af37 0%, #f1d57a 100%);
-      color: #111827;
-      box-shadow: 0 12px 30px rgba(212, 175, 55, 0.25);
-    }
+    .btn:hover { transform: translateY(-2px); }
 
-    .btn-primary:hover {
-      transform: translateY(-2px);
+    .btn-primary {
+      color: var(--dark);
+      background: linear-gradient(135deg, #d4af37 0%, #f1d57a 100%);
+      box-shadow: 0 12px 30px rgba(212,175,55,0.25);
     }
 
     .btn-secondary {
-      border-color: var(--line);
       color: var(--text);
-      background: rgba(255, 255, 255, 0.04);
+      border-color: var(--line);
+      background: rgba(255,255,255,0.04);
     }
 
-    .btn-secondary:hover {
-      border-color: rgba(255, 255, 255, 0.28);
-      transform: translateY(-2px);
+    .btn-whatsapp {
+      background: var(--success);
+      color: var(--white);
+      box-shadow: 0 12px 28px rgba(34,197,94,0.24);
     }
 
-    .catalog-card,
-    .contact-card {
+    .hero-stats {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .stat {
+      min-width: 145px;
+      padding: 16px 18px;
       border: 1px solid var(--line);
-      background: var(--card);
-      border-radius: var(--radius);
+      border-radius: 18px;
+      background: rgba(255,255,255,0.06);
       box-shadow: var(--shadow);
     }
 
+    .stat strong {
+      display: block;
+      font-size: 1.25rem;
+      color: var(--gold-soft);
+      margin-bottom: 4px;
+    }
+
+    .stat span {
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .hero-panel {
+      display: none;
+    }
+
+    .hero-panel img {
+      border-radius: 20px;
+      border: 1px solid rgba(255,255,255,0.16);
+      margin-bottom: 18px;
+      min-height: 420px;
+      object-fit: cover;
+      background: #0b1324;
+    }
+
+    .hero-panel-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
+
+    .mini-card {
+      padding: 14px;
+      border-radius: 16px;
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .mini-card strong {
+      display: block;
+      margin-bottom: 5px;
+      color: var(--white);
+    }
+
+    .mini-card span {
+      color: var(--muted);
+      font-size: 0.92rem;
+      line-height: 1.5;
+    }
+
     .section-title {
-      margin-bottom: 16px;
       text-align: center;
+      margin-bottom: 34px;
     }
 
     .section-title h3 {
@@ -250,30 +304,95 @@ body {
       line-height: 1.8;
     }
 
-    #catalogo .section-title {
-      margin-bottom: 34px;
+    .benefits-grid,
+    .catalog-grid,
+    .steps-grid {
+      display: grid;
+      gap: 24px;
+    }
+
+    .benefits-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .benefit-card,
+    .step-card,
+    .catalog-card,
+    .contact-card {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--card);
+      box-shadow: var(--shadow);
+    }
+
+    .benefit-card,
+    .step-card {
+      padding: 26px;
+    }
+
+    .benefit-icon,
+    .step-number {
+      width: 52px;
+      height: 52px;
+      display: grid;
+      place-items: center;
+      border-radius: 16px;
+      margin-bottom: 18px;
+      font-weight: 800;
+      background: rgba(212,175,55,0.12);
+      border: 1px solid rgba(212,175,55,0.24);
+      color: var(--gold-soft);
+    }
+
+    .benefit-card h4,
+    .step-card h4,
+    .contact-card h4 {
+      margin: 0 0 10px;
+      font-size: 1.15rem;
+    }
+
+    .benefit-card p,
+    .step-card p,
+    .contact-card p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.75;
     }
 
     .catalog-grid {
-      display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 24px;
     }
 
     .catalog-card {
       overflow: hidden;
       display: flex;
       flex-direction: column;
+      transition: transform 0.25s ease, border-color 0.25s ease;
     }
 
-    .viewer {
+    .catalog-card:hover {
+      transform: translateY(-5px);
+      border-color: rgba(212,175,55,0.36);
+    }
+
+    .viewer,
+    .viewer-placeholder {
       width: 100%;
       height: 260px;
       border: 0;
       display: block;
-      background:
-        linear-gradient(135deg, rgba(212, 175, 55, 0.12), rgba(143, 184, 255, 0.08)),
-        #0b1324;
+      background: linear-gradient(135deg, rgba(212,175,55,0.12), rgba(143,184,255,0.08)), #0b1324;
+    }
+
+    .viewer-placeholder {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 8px;
+      color: var(--muted);
+      text-align: center;
+      padding: 20px;
     }
 
     .catalog-content {
@@ -286,11 +405,31 @@ body {
       flex: 1;
     }
 
+    .catalog-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      align-items: flex-start;
+    }
+
     .catalog-content h4 {
       margin: 0;
-      font-size: 1.1rem;
+      font-size: 1.05rem;
+      line-height: 1.45;
       color: #111;
-      line-height: 1.4;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      white-space: nowrap;
+      padding: 7px 10px;
+      border-radius: 999px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: #7c5c00;
+      background: rgba(212,175,55,0.18);
     }
 
     .catalog-content p {
@@ -300,21 +439,73 @@ body {
       font-size: 0.95rem;
     }
 
+    .catalog-actions {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: auto;
+    }
+
+    .catalog-actions .btn {
+      flex: 1;
+      min-width: 130px;
+    }
+
+    .catalog-actions .btn-secondary {
+      color: #111;
+      border-color: rgba(17,24,39,0.12);
+      background: rgba(17,24,39,0.04);
+    }
+
+    .steps-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
     .contact-card {
-      padding: 30px;
-      margin-top: 40px;
+      padding: 32px;
       text-align: center;
     }
 
-    .contact-card p {
-      color: var(--muted);
-      line-height: 1.7;
-      max-width: 700px;
-      margin: 0 auto 22px;
+    .contact-actions {
+      display: flex;
+      justify-content: center;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-top: 24px;
     }
 
-    #contacto {
-      padding-top: 120px;
+    .social-grid {
+      display: flex;
+      justify-content: center;
+      gap: 18px;
+      flex-wrap: wrap;
+      margin-top: 28px;
+    }
+
+    .social-link {
+      min-width: 132px;
+      padding: 16px;
+      border-radius: 18px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.04);
+      transition: 0.25s ease;
+    }
+
+    .social-link:hover {
+      transform: translateY(-3px);
+      border-color: rgba(212,175,55,0.36);
+      background: rgba(255,255,255,0.08);
+    }
+
+    .social-link strong {
+      display: block;
+      font-size: 1.4rem;
+      margin-bottom: 8px;
+    }
+
+    .social-link span {
+      color: var(--muted);
+      font-size: 0.95rem;
     }
 
     footer {
@@ -328,8 +519,8 @@ body {
       display: inline-block;
       padding: 8px 12px;
       border-radius: 999px;
-      background: rgba(143, 184, 255, 0.08);
-      border: 1px solid rgba(143, 184, 255, 0.18);
+      background: rgba(143,184,255,0.08);
+      border: 1px solid rgba(143,184,255,0.18);
       color: #dbeafe;
       font-size: 0.84rem;
       margin-right: 8px;
@@ -339,189 +530,107 @@ body {
     .fullscreen {
       position: fixed;
       inset: 0;
-      background: #000;
+      background: rgba(0,0,0,0.95);
       display: none;
       z-index: 9999;
+      padding: 24px;
     }
 
     .fullscreen iframe {
       width: 100%;
       height: 100%;
       border: none;
+      border-radius: 18px;
+      background: #000;
     }
 
     .close-btn {
       position: absolute;
-      top: 15px;
-      right: 20px;
+      top: 18px;
+      right: 22px;
       background: #fff;
       border: none;
       font-size: 18px;
       padding: 8px 12px;
-      border-radius: 8px;
+      border-radius: 10px;
       cursor: pointer;
       z-index: 10000;
     }
 
+    .floating-whatsapp {
+      position: fixed;
+      right: 18px;
+      bottom: 18px;
+      z-index: 1200;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 18px;
+      border-radius: 999px;
+      background: #22c55e;
+      color: #fff;
+      box-shadow: 0 18px 40px rgba(34,197,94,0.32);
+      font-weight: 700;
+    }
+
+    .floating-whatsapp:hover { transform: translateY(-2px); }
+
     @media (max-width: 992px) {
-      .hero {
-        min-height: auto;
+      .hero { min-height: auto; padding: 32px 0; }
+      .benefits-grid,
+      .catalog-grid,
+      .steps-grid {
+        grid-template-columns: 1fr 1fr;
       }
-
-      .hero-grid {
-        transform: translateY(0);
-      }
-
-      .catalog-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-
-      .hero h2 {
-        font-size: clamp(2rem, 6vw, 3.4rem);
+      body {
+        background-attachment: scroll;
+        background-position: center center;
+        background-size: cover;
       }
     }
 
-    @media (max-width: 640px) {
-      .container {
-        width: min(100% - 24px, var(--max));
-      }
-
-      .nav {
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-      }
-
-      .brand {
-        flex-direction: column;
-        justify-content: center;
-        text-align: center;
-      }
-
-      .brand-text h1 {
-        font-size: 0.9rem;
-        line-height: 1.4;
-        text-align: center;
-      }
-
-      .brand-text p {
-        text-align: center;
-        font-size: 0.82rem;
-      }
-
-      .menu {
-        width: 100%;
-        justify-content: center;
-      }
-
-      .menu a {
-        padding: 10px 14px;
-        font-size: 0.95rem;
-      }
-
-      section {
-        padding: 60px 0;
-      }
-
-      .hero {
-        min-height: auto;
-        padding-top: 40px;
-        padding-bottom: 30px;
-      }
-
-      .hero-grid {
-        gap: 18px;
-        transform: translateY(0);
-      }
-
-      .eyebrow {
-        font-size: 0.82rem;
-        line-height: 1.4;
-        padding: 10px 14px;
-        margin-bottom: 12px;
-      }
-
-      .hero h2 {
-        font-size: 2rem;
-        line-height: 1.2;
-        text-align: center;
-      }
-
-      .hero p {
-        font-size: 1rem;
-        line-height: 1.7;
-        max-width: 100%;
-        text-align: center;
-        padding: 0 4px;
-      }
-
-      .hero-actions {
-        flex-direction: column;
-        align-items: center;
-        width: 100%;
-      }
-
-      .btn {
-        width: 100%;
-        max-width: 280px;
-      }
-
-      .section-title h3 {
-        font-size: 1.8rem;
-      }
-
-      .section-title p {
-        max-width: 100%;
-        padding: 0 4px;
-      }
-
+    @media (max-width: 720px) {
+      .container { width: min(100% - 24px, var(--max)); }
+      .nav,
+      .brand { flex-direction: column; text-align: center; }
+      .menu { justify-content: center; }
+      section { padding: 64px 0; }
+      .hero { min-height: auto; padding: 24px 0 40px; }
+      .hero-grid,
       .catalog-grid {
         grid-template-columns: 1fr;
-        gap: 18px;
       }
-
-      .catalog-content {
-        text-align: center;
+      .hero h2 { font-size: 2.2rem; }
+      .hero-actions,
+      .catalog-actions,
+      .contact-actions {
+        flex-direction: column;
       }
-
-      .viewer {
-        height: 220px;
+      .btn { width: 100%; }
+      .viewer,
+      .viewer-placeholder { height: 220px; }
+      body {
+        background-attachment: scroll;
+        background-position: center center;
+        background-size: cover;
       }
-
-      .contact-card {
-        padding: 22px;
-      }
-
-      .contact-card h4,
-      .contact-card p {
-        text-align: center;
-      }
-
-      #contacto {
-        padding-top: 80px;
-      }
+      .floating-whatsapp span { display: none; }
+      .floating-whatsapp { padding: 14px; border-radius: 50%; }
     }
-    .catalog-content .btn {
-  color: #000;
-  display: block;
-  margin: 10px auto 0;
-  text-align: center;
-}
   </style>
 </head>
-
 <body>
-  <header>
+  <header class="glass">
     <div class="container nav">
-      <a class="brand" href="#inicio">
-        <img src="logomanuel.png" alt="Logotipo de la marca" />
+      <a class="brand" href="#inicio" aria-label="Ir al inicio">
+        <img src="logomanuel.png" alt="Logotipo de Manuel Murayari" />
         <div class="brand-text">
-          <h1>MANUEL MURAYARI VISORES 360°</h1>
-          <p>- SERVICIO AÉREO CON DRON -</p>
+          <h1>Manuel Murayari Visores 360°</h1>
+          <p>Servicio aéreo con dron</p>
         </div>
       </a>
 
-      <nav class="menu">
+      <nav class="menu" aria-label="Navegación principal">
         <a href="#inicio" class="active">Inicio</a>
         <a href="#catalogo">Catálogo</a>
         <a href="#contacto">Contacto</a>
@@ -533,26 +642,42 @@ body {
     <section class="hero" id="inicio">
       <div class="container hero-grid">
         <div>
-          <div class="eyebrow">Presentación profesional para agencias y desarrolladoras</div>
-
-          <h2>Haz que tus clientes visualicen su futuro en cada terreno con experiencias 360°.</h2>
-
+          <div class="eyebrow">Presentación premium para agencias, inmobiliarias y desarrolladoras</div>
+          <h2>Haz que tus clientes <span>visualicen su futuro</span> en cada terreno con experiencias 360°.</h2>
           <p>
-            No se trata solo de mostrar un lote, sino de hacer que el cliente visualice su futuro desde el primer contacto.
-            Con recorridos virtuales 360°, tus terrenos se convierten en oportunidades reales: el espacio donde construirán su casa, su negocio o su inversión.
+            No se trata solo de mostrar un lote. Se trata de lograr que el cliente se imagine viviendo,
+            construyendo o invirtiendo allí desde el primer contacto. Con recorridos virtuales 360°, tus
+            propiedades se convierten en una experiencia más convincente, moderna y memorable.
           </p>
 
           <div style="margin-bottom: 18px;">
-            <span class="tag">Más visitas</span>
-            <span class="tag">Mayor impacto</span>
+            <span class="tag">Más visitas calificadas</span>
+            <span class="tag">Mayor impacto visual</span>
             <span class="tag">Ventas más rápidas</span>
           </div>
 
           <div class="hero-actions">
             <a class="btn btn-primary" href="#catalogo">Ver catálogo</a>
-            <a class="btn btn-secondary" href="#contacto">Solicitar demostración</a>
+            <a class="btn btn-whatsapp" href="https://wa.me/51916191970" target="_blank" rel="noopener noreferrer">Solicitar demostración</a>
+          </div>
+
+          <div class="hero-stats">
+            <div class="stat">
+              <strong>360°</strong>
+              <span>Recorridos inmersivos</span>
+            </div>
+            <div class="stat">
+              <strong>Dron</strong>
+              <span>Tomas aéreas profesionales</span>
+            </div>
+            <div class="stat">
+              <strong>24/7</strong>
+              <span>Disponible desde cualquier lugar</span>
+            </div>
           </div>
         </div>
+
+        
       </div>
     </section>
 
@@ -560,70 +685,63 @@ body {
       <div class="container">
         <div class="section-title">
           <h3>Catálogo de visores 360°</h3>
-          <p>Explora algunos ejemplos de recorridos virtuales para propiedades y proyectos inmobiliarios.</p>
+          <p>Explora algunos ejemplos de recorridos virtuales aplicados a propiedades y proyectos inmobiliarios.</p>
         </div>
 
         <div class="catalog-grid">
           <article class="catalog-card">
-            <iframe class="viewer" src="https://tour.panoee.net/69c3161266cf878ba00e2f6c"></iframe>
+            <iframe class="viewer" src="https://tour.panoee.net/69c3161266cf878ba00e2f6c" title="Proyecto Valles del Paranapura" loading="lazy" allowfullscreen></iframe>
             <div class="catalog-content">
-              <h4>1. PROY. VALLES DEL PARANAPURA</h4>
-              <p>Explora los Valles del Paranapura a través de una experiencia Tour 360° inmersiva, donde podrás recorrer su entorno como si estuvieras ahí. Descubre la esencia del territorio desde cualquier lugar, conectando con su riqueza en tiempo real.</p>
-              <button class="btn btn-secondary" onclick="abrirFullscreen(this)" data-link="https://tour.panoee.net/69c3161266cf878ba00e2f6c">Ver en grande</button>
+              <div class="catalog-top">
+                <h4>Proyecto Valles del Paranapura</h4>
+                <span class="badge">Terrenos</span>
+              </div>
+              <p>Explora el entorno como si estuvieras allí. Ideal para mostrar amplitud, acceso y contexto real del proyecto.</p>
+              <div class="catalog-actions">
+                <button class="btn btn-secondary" onclick="abrirFullscreen(this)" data-link="https://tour.panoee.net/69c3161266cf878ba00e2f6c">Ver en grande</button>
+                <a class="btn btn-primary" href="https://wa.me/51916191970?text=Hola%20Manuel,%20quiero%20un%20visor%20360%C2%B0%20como%20el%20de%20Valles%20del%20Paranapura" target="_blank" rel="noopener noreferrer">Quiero uno así</a>
+              </div>
             </div>
           </article>
 
           <article class="catalog-card">
-            <iframe class="viewer" src="https://tour.panoee.net/69cc2c0706ad10636db856f3"></iframe>
+            <iframe class="viewer" src="https://tour.panoee.net/69cc2c0706ad10636db856f3" title="Propiedad en venta" loading="lazy" allowfullscreen></iframe>
             <div class="catalog-content">
-              <h4>2. PROPIEDAD EN VENTA</h4>
-              <p>Descubre esta propiedad a través de una experiencia 360° inmersiva, que te permite recorrer cada espacio y apreciar su entorno como si estuvieras ahí. Visualiza sus detalles y proyecta tu próxima inversión desde cualquier lugar.</p>
-              <button class="btn btn-secondary" onclick="abrirFullscreen(this)" data-link="https://tour.panoee.net/69cc2c0706ad10636db856f3">Ver en grande</button>
+              <div class="catalog-top">
+                <h4>Propiedad en venta</h4>
+                <span class="badge">Inversión</span>
+              </div>
+              <p>Una experiencia inmersiva para recorrer la propiedad, entender su distribución y mejorar la intención de compra.</p>
+              <div class="catalog-actions">
+                <button class="btn btn-secondary" onclick="abrirFullscreen(this)" data-link="https://tour.panoee.net/69cc2c0706ad10636db856f3">Ver en grande</button>
+                <a class="btn btn-primary" href="https://wa.me/51916191970?text=Hola%20Manuel,%20quiero%20un%20visor%20360%C2%B0%20como%20el%20de%20Propiedad%20en%20venta" target="_blank" rel="noopener noreferrer">Solicitar similar</a>
+              </div>
             </div>
           </article>
 
           <article class="catalog-card">
-            <iframe class="viewer" src="https://TU-LINK-EMBED-3"></iframe>
-            <div class="catalog-content">
-              <h4>3. Cocina</h4>
-              <p>Diseño funcional y elegante.</p>
-              <button class="btn btn-secondary" onclick="abrirFullscreen(this)" data-link="https://TU-LINK-EMBED-3">Ver en grande</button>
+            <div class="viewer-placeholder">
+              <strong>Próximo proyecto</strong>
+              <span>Aquí puedes colocar tu siguiente visor 360° cuando tengas el enlace real.</span>
             </div>
-          </article>
-
-          <article class="catalog-card">
-            <iframe class="viewer" src="https://TU-LINK-EMBED-4"></iframe>
             <div class="catalog-content">
-              <h4>4. Dormitorio</h4>
-              <p>Ambiente acogedor y luminoso.</p>
-              <button class="btn btn-secondary" onclick="abrirFullscreen(this)" data-link="https://TU-LINK-EMBED-4">Ver en grande</button>
-            </div>
-          </article>
-
-          <article class="catalog-card">
-            <iframe class="viewer" src="https://TU-LINK-EMBED-5"></iframe>
-            <div class="catalog-content">
-              <h4>5. Baño</h4>
-              <p>Acabados modernos.</p>
-              <button class="btn btn-secondary" onclick="abrirFullscreen(this)" data-link="https://TU-LINK-EMBED-5">Ver en grande</button>
-            </div>
-          </article>
-
-          <article class="catalog-card">
-            <iframe class="viewer" src="https://TU-LINK-EMBED-6"></iframe>
-            <div class="catalog-content">
-              <h4>6. Terraza</h4>
-              <p>Vista amplia y relajante.</p>
-              <button class="btn btn-secondary" onclick="abrirFullscreen(this)" data-link="https://TU-LINK-EMBED-6">Ver en grande</button>
+              <div class="catalog-top">
+                <h4>Espacio disponible para nuevo recorrido</h4>
+                <span class="badge">Próximamente</span>
+              </div>
+              <p>No dejes enlaces de prueba. Mientras no tengas un visor listo, es mejor mostrar un bloque profesional como este.</p>
+              <div class="catalog-actions">
+                <a class="btn btn-primary" href="https://wa.me/51916191970?text=Hola%20Manuel,%20quiero%20agregar%20un%20nuevo%20proyecto%20a%20mi%20cat%C3%A1logo" target="_blank" rel="noopener noreferrer">Actualizar catálogo</a>
+              </div>
             </div>
           </article>
         </div>
       </div>
     </section>
 
-    <div id="fullscreenTour" class="fullscreen">
-      <button class="close-btn" onclick="cerrarFullscreen()">✕</button>
-      <iframe id="frameGrande"></iframe>
+    <div id="fullscreenTour" class="fullscreen" aria-hidden="true">
+      <button class="close-btn" onclick="cerrarFullscreen()" aria-label="Cerrar visor">✕</button>
+      <iframe id="frameGrande" title="Visor 360 en pantalla completa"></iframe>
     </div>
 
     <section id="contacto">
@@ -631,40 +749,37 @@ body {
         <div class="section-title">
           <h3>Contáctame</h3>
           <p>
-            Conecta conmigo directamente a través de mis redes sociales o escríbeme por WhatsApp
-            para más información sobre recorridos virtuales 360°.
+            Conecta conmigo por WhatsApp o redes sociales para conocer cómo presentar tus proyectos inmobiliarios con recorridos virtuales 360°.
           </p>
         </div>
 
-        <div class="contact-card">
-          <h4 style="margin-top: 0; font-size: 1.5rem;">
-            Disponible para proyectos inmobiliarios
-          </h4>
-
+        <div class="contact-card glass">
+          <h4 style="margin-top: 0; font-size: 1.5rem;">Disponible para proyectos inmobiliarios</h4>
           <p>
-            Trabajo con inmobiliarias, agentes y desarrolladores que buscan diferenciar sus propiedades
-            con tecnología 360° y contenido visual de alto impacto.
+            Trabajo con inmobiliarias, agentes y desarrolladores que quieren diferenciar sus propiedades con tecnología 360° y contenido visual de alto impacto.
           </p>
 
-          <div style="display:flex; justify-content:center; gap:25px; flex-wrap:wrap; margin-top:20px;">
-            <a href="https://instagram.com/TU_USUARIO" target="_blank" style="text-align:center;">
-              <div style="font-size:30px;">📸</div>
-              <div>Instagram</div>
-            </a>
+          <div class="contact-actions">
+            <a class="btn btn-whatsapp" href="https://wa.me/51916191970" target="_blank" rel="noopener noreferrer">Escribir por WhatsApp</a>
+            <a class="btn btn-secondary" href="mailto:mmurayari8@gmail.com">Enviar correo</a>
+          </div>
 
-            <a href="https://www.facebook.com/share/1Atyb8zh9k/?mibextid=wwXIfr" target="_blank" style="text-align:center;">
-              <div style="font-size:30px;">📘</div>
-              <div>Facebook</div>
+          <div class="social-grid">
+            <a class="social-link" href="https://instagram.com/TU_USUARIO" target="_blank" rel="noopener noreferrer">
+              <strong>📸</strong>
+              <span>Instagram</span>
             </a>
-
-            <a href="https://wa.me/51916191970" target="_blank" style="text-align:center;">
-              <div style="font-size:30px;">💬</div>
-              <div>WhatsApp</div>
+            <a class="social-link" href="https://www.facebook.com/share/1Atyb8zh9k/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer">
+              <strong>📘</strong>
+              <span>Facebook</span>
             </a>
-
-            <a href="https://tiktok.com/@murayarimanuel" target="_blank" style="text-align:center;">
-              <div style="font-size:30px;">🎵</div>
-              <div>TikTok</div>
+            <a class="social-link" href="https://wa.me/51916191970" target="_blank" rel="noopener noreferrer">
+              <strong>💬</strong>
+              <span>WhatsApp</span>
+            </a>
+            <a class="social-link" href="https://tiktok.com/@murayarimanuel" target="_blank" rel="noopener noreferrer">
+              <strong>🎵</strong>
+              <span>TikTok</span>
             </a>
           </div>
         </div>
@@ -674,21 +789,33 @@ body {
 
   <footer>
     <div class="container">
-      © 2026 · Presentación de servicios inmobiliarios con visores 360°.
+      © 2026 · Presentación profesional de servicios inmobiliarios con visores 360°.
     </div>
   </footer>
 
+  <a class="floating-whatsapp" href="https://wa.me/51916191970" target="_blank" rel="noopener noreferrer" aria-label="Contactar por WhatsApp">
+    <span>WhatsApp</span> 💬
+  </a>
+
   <script>
     function abrirFullscreen(btn) {
-      const link = btn.getAttribute("data-link");
-      document.getElementById("fullscreenTour").style.display = "block";
-      document.getElementById("frameGrande").src = link;
+      const link = btn.getAttribute('data-link');
+      document.getElementById('fullscreenTour').style.display = 'block';
+      document.getElementById('fullscreenTour').setAttribute('aria-hidden', 'false');
+      document.getElementById('frameGrande').src = link;
+      document.body.style.overflow = 'hidden';
     }
 
     function cerrarFullscreen() {
-      document.getElementById("fullscreenTour").style.display = "none";
-      document.getElementById("frameGrande").src = "";
+      document.getElementById('fullscreenTour').style.display = 'none';
+      document.getElementById('fullscreenTour').setAttribute('aria-hidden', 'true');
+      document.getElementById('frameGrande').src = '';
+      document.body.style.overflow = '';
     }
+
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') cerrarFullscreen();
+    });
   </script>
 </body>
 </html>
