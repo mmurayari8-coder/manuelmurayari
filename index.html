@@ -397,126 +397,134 @@ body {
       }
     }
 
-    @media (max-width: 640px) {
-      .container {
-        width: min(100% - 24px, var(--max));
-      }
+@media (max-width: 640px) {
+  .container {
+    width: min(100% - 24px, var(--max));
+  }
 
-      .nav {
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-      }
+  .nav {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
 
-      .brand {
-        flex-direction: column;
-        justify-content: center;
-        text-align: center;
-      }
+  .brand {
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    text-align: left;
+    gap: 12px;
+  }
 
-      .brand-text h1 {
-        font-size: 0.9rem;
-        line-height: 1.4;
-        text-align: center;
-      }
+  .brand img {
+    width: 46px;
+    height: 46px;
+    border-radius: 14px;
+  }
 
-      .brand-text p {
-        text-align: center;
-        font-size: 0.82rem;
-      }
+  .brand-text h1 {
+    font-size: 0.88rem;
+    line-height: 1.3;
+    text-align: left;
+  }
 
-      .menu {
-        width: 100%;
-        justify-content: center;
-      }
+  .brand-text p {
+    text-align: left;
+    font-size: 0.78rem;
+  }
 
-      .menu a {
-        padding: 10px 14px;
-        font-size: 0.95rem;
-      }
+  .menu {
+    width: 100%;
+    justify-content: center;
+  }
 
-      section {
-        padding: 60px 0;
-      }
+  .menu a {
+    padding: 10px 14px;
+    font-size: 0.95rem;
+  }
 
-      .hero {
-        min-height: auto;
-        padding-top: 40px;
-        padding-bottom: 30px;
-      }
+  section {
+    padding: 60px 0;
+  }
 
-      .hero-grid {
-        gap: 18px;
-        transform: translateY(0);
-      }
+  .hero {
+    min-height: auto;
+    padding-top: 40px;
+    padding-bottom: 30px;
+  }
 
-      .eyebrow {
-        font-size: 0.82rem;
-        line-height: 1.4;
-        padding: 10px 14px;
-        margin-bottom: 12px;
-      }
+  .hero-grid {
+    gap: 18px;
+    transform: translateY(0);
+  }
 
-      .hero h2 {
-        font-size: 2rem;
-        line-height: 1.2;
-        text-align: center;
-      }
+  .eyebrow {
+    font-size: 0.82rem;
+    line-height: 1.4;
+    padding: 10px 14px;
+    margin-bottom: 12px;
+  }
 
-      .hero p {
-        font-size: 1rem;
-        line-height: 1.7;
-        max-width: 100%;
-        text-align: center;
-        padding: 0 4px;
-      }
+  .hero h2 {
+    font-size: 2rem;
+    line-height: 1.2;
+    text-align: center;
+  }
 
-      .hero-actions {
-        flex-direction: column;
-        align-items: center;
-        width: 100%;
-      }
+  .hero p {
+    font-size: 1rem;
+    line-height: 1.7;
+    max-width: 100%;
+    text-align: center;
+    padding: 0 4px;
+  }
 
-      .btn {
-        width: 100%;
-        max-width: 280px;
-      }
+  .hero-actions {
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
 
-      .section-title h3 {
-        font-size: 1.8rem;
-      }
+  .btn {
+    width: 100%;
+    max-width: 280px;
+  }
 
-      .section-title p {
-        max-width: 100%;
-        padding: 0 4px;
-      }
+  .section-title h3 {
+    font-size: 1.8rem;
+  }
 
-      .catalog-grid {
-        grid-template-columns: 1fr;
-        gap: 18px;
-      }
+  .section-title p {
+    max-width: 100%;
+    padding: 0 4px;
+  }
 
-      .catalog-content {
-        text-align: center;
-      }
+  .catalog-grid {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
 
-      .viewer {
-        height: 220px;
-      }
+  .catalog-content {
+    text-align: center;
+  }
 
-      .contact-card {
-        padding: 22px;
-      }
+  .viewer {
+    height: 220px;
+  }
 
-      .contact-card h4,
-      .contact-card p {
-        text-align: center;
-      }
+  .contact-card {
+    padding: 22px;
+  }
 
-      #contacto {
-        padding-top: 80px;
-      }
-    }
+  .contact-card h4,
+  .contact-card p {
+    text-align: center;
+  }
+
+  #contacto {
+    padding-top: 80px;
+  }
+}
 
     .catalog-content .btn {
       color: #000;
